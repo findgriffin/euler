@@ -1,0 +1,4 @@
+#! /bin/sh
+
+make prob$1
+./prob$1
