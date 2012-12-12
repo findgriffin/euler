@@ -8,7 +8,7 @@ prob13: prob13.c myhead.h
 	cc -g -lm -Wall prob13.c -o prob13
 
 prob12: prob12.c myhead.h
-	cc -g -lm -Wall prob12.c -o prob12
+	cc -g -lm -Wall prob12d.c -o prob12
 
 prob11: prob11.c myhead.h
 	cc -g -lm -Wall prob11.c -o prob11
