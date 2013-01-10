@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 1
  * add all the multiples of 3 and 5 below 1000
  */
