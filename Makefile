@@ -1,14 +1,15 @@
 
-all: prob001/prob001
+all: prob001/prob001.b
 
 clean: 
-	rm -f prob*/prob*.o prob001/prob001
+	rm -f prob*/prob*.o prob*/prob*.b
 
 .PHONY: all clean
 
-CFLAGS :=--std=c99 -g -Wall -lm
+CFLAGS :=--std=c99 -g -Wall  -lm
 
-prob%/prob%: prob%/prob%.o 
-	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+prob%/prob%.b: prob%/prob%.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 prob%/prob%.o: prob%/prob%.c utils/myhead.h
+
