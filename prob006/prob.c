@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 6 
  * the difference between the sum of squares of the first 100 natural numbers and the square of the sum
  * 1^2 + 2^2+...+100^2 = a

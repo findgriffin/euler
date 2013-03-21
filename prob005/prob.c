@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 5 
  * smallest number which has 1-20 as factors
  */

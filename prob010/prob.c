@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 10 
  * the sum of all primes below 2 million
  */

@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 8 
  * gets 1000 digit number from stdin
  * finds the greatest product of five consecutive digits

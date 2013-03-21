@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 9 
  * largest a^2 + b^2 = c^2 where a + b + c = 1000
  */

@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 3 
  * find th largest prime factor of NUMBER
  */

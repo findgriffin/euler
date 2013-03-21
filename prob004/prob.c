@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 4 
  * find the largest palendromic number made from the product of two 2 digit numbers
  */

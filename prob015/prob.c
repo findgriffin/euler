@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 15 
  * how many routes between top left and bottom right corner of a 20x20 grid
  * (without backtracking)

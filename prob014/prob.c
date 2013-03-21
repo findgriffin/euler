@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 
  * description find the longest sequence starting under 10^6
  * apparently there were overflow errors when regular ints were used!

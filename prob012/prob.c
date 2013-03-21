@@ -1,4 +1,4 @@
-#include "myhead.h"
+#include "../utils/myhead.h"
 /* problem 12 
  * first triangle number to have over five hundred divisors
  */
