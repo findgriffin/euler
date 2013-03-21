@@ -1,15 +1,21 @@
+IDIR =../utils
+CC=gcc
+CFLAGS=-I$(IDIR) -lm
 
-all: prob001/prob001.b
+ODIR=obj
+LDIR =../lib
 
-clean: 
-	rm -f prob*/prob*.o prob*/prob*.b
+_DEPS = myhead.h
+DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-.PHONY: all clean
+prob%/prob.o: prob%/prob.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
-CFLAGS :=--std=c99 -g -Wall  -lm
+prob%/prob.b: prob%/prob.o
+	gcc -o $@ $^ $(CFLAGS)
 
-prob%/prob%.b: prob%/prob%.o
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+.PHONY: clean
 
-prob%/prob%.o: prob%/prob%.c utils/myhead.h
-
+clean:
+	rm -f */*.o */*.b
+	rm -f */answers
