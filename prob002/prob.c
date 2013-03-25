@@ -19,7 +19,7 @@ int main()
         n1 = n;
         n = n1 + n2;
     }
-    printf("%lld", sum);
+    printf("%lld\n", sum);
     
     return 0;
 }
