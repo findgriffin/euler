@@ -16,6 +16,13 @@ prob%/prob.o: prob%/prob.c $(DEPS)
 prob%/prob.b: prob%/prob.o
 	gcc -o $@ $^ $(CFLAGS)
 
+prob%/answer.c: prob%/prob.b
+	prob$*/prob.b > prob$*/answer.c
+prob%/answer.py: prob%/prob.py
+	prob$*/prob.py > prob$*/answer.py
+prob%/answer.js: prob%/prob.js
+	prob$*/prob.js > prob$*/answer.js
+
 prob%/compare: prob%/prob.b prob%/prob.py prob%/prob.js
 	echo c > prob$*/compare
 	/usr/bin/time prob$*/prob.b >> prob$*/compare
