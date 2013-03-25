@@ -8,6 +8,8 @@ LDIR =../lib
 _DEPS = myhead.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
+all: prob001/compare
+
 prob%/prob.o: prob%/prob.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
@@ -22,7 +24,7 @@ prob%/compare: prob%/prob.b prob%/prob.py prob%/prob.js
 	echo js >> prob$*/compare
 	/usr/bin/time prob$*/prob.js >> prob$*/compare
 
-.PHONY: clean
+.PHONY: clean all
 
 clean:
 	rm -f */*.o */*.b
