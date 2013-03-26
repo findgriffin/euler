@@ -17,22 +17,33 @@ prob%/prob.b: prob%/prob.o
 	gcc -o $@ $^ $(CFLAGS)
 
 prob%/answer.c: prob%/prob.b
-	prob$*/prob.b > prob$*/answer.c
+	/usr/bin/time -f "%E" -o prob$*/time.c prob$*/prob.b > prob$*/answer.c
 prob%/answer.py: prob%/prob.py
-	prob$*/prob.py > prob$*/answer.py
+	/usr/bin/time -f "%E" -o prob$*/time.py prob$*/prob.py > prob$*/answer.py
 prob%/answer.js: prob%/prob.js
-	prob$*/prob.js > prob$*/answer.js
+	/usr/bin/time -f "%E" -o prob$*/time.js prob$*/prob.js > prob$*/answer.js
 
-prob%/compare: prob%/prob.b prob%/prob.py prob%/prob.js
-	echo c > prob$*/compare
-	/usr/bin/time prob$*/prob.b >> prob$*/compare
-	echo py >> prob$*/compare
-	/usr/bin/time prob$*/prob.py >> prob$*/compare
-	echo js >> prob$*/compare
-	/usr/bin/time prob$*/prob.js >> prob$*/compare
+prob%/compare: prob%/answer.c prob%/answer.js prob%/answer.py
+
+	echo -n "C:  " > prob$*/compare
+	echo -n `cat prob$*/answer.c` >> prob$*/compare
+	echo -n " in " >> prob$*/compare
+	echo `cat prob$*/time.c` >> prob$*/compare
+
+	echo -n "py: " >> prob$*/compare
+	echo -n `cat prob$*/answer.py` >> prob$*/compare
+	echo -n " in " >> prob$*/compare
+	echo `cat prob$*/time.py` >> prob$*/compare
+
+	echo -n "js: " >> prob$*/compare
+	echo -n `cat prob$*/answer.js` >> prob$*/compare
+	echo -n " in " >> prob$*/compare
+	echo `cat prob$*/time.js` >> prob$*/compare
+
+	
+
 
 .PHONY: clean all
 
 clean:
-	rm -f */*.o */*.b
-	rm -f */compare
+	rm -f */*.o */*.b */compare */answer.*
