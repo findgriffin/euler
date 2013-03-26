@@ -8,7 +8,7 @@ LDIR =../lib
 _DEPS = myhead.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-all: prob001/compare
+all: prob001/compare prob002/compare
 
 prob%/prob.o: prob%/prob.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
