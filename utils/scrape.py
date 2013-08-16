@@ -20,7 +20,8 @@ def get_html(num):
         print 'problem is longer than 1 for %s ' % num
     images = []
     images = [img.get('src') for img in problem[0].findAll('img')]
-    links  = [lnk.get('href') for lnk in problem[0].findAll('a')]
+    links  = [lnk.get('href') for lnk in problem[0].findAll('a') if not
+            lnk.get('href').startswith('index.php')]
     return heading, str(problem[0]), images+links
 
 def write_content(num, heading, html, images):
