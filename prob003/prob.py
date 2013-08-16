@@ -20,8 +20,8 @@ def main():
     num = NUMBER
     i =  2
     while i < NUMBER/2:
-#       if i % 1000 == 0:
-#           print 'looping for %s' % i
+        if i % 10000000 == 0:
+            print 'looping for %s' % i
         if num % i == 0:
             if p_test(i) == 1:
                 print "%d is a prime factor of %d\n" % (i, num)
