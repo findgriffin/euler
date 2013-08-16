@@ -3,6 +3,7 @@
 import math
 
 NUMBER = 600851475143
+NUMBER = 600851475143
 NO_OF_FACTORS = 100000
 
 def p_test(num):
@@ -16,10 +17,9 @@ def p_test(num):
         i += 1
     return 1
 
-def main():
-    num = NUMBER
+def main(num):
     i =  2
-    while i < NUMBER/2:
+    while i < num/2:
         if i % 10000000 == 0:
             print 'looping for %s' % i
         if num % i == 0:
@@ -31,5 +31,5 @@ def main():
     return 0
 
 if __name__ == "__main__":
-    main()
+    main(NUMBER)
 
