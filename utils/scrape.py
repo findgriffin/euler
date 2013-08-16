@@ -4,46 +4,47 @@ import requests
 import BeautifulSoup as bsoup
 import sys
 import os
-
-def get_content(num):
+EULER = 'http://projecteuler.net/'
+def get_html(num):
     """ Get the problem description from projecteuler.net. """
-    page = requests.get('http://projecteuler.net/problem=%s' % num)
-
+    page = requests.get('%s/problem=%s' % (EULER, num))
     if page.status_code != 200:
         print 'failed to retrieve problem %s, got: %s' % (num, 
                 page.status_code)
     soup = bsoup.BeautifulSoup(page.text)
 
     content = soup.find(id='content')
-    heading = content.h2.string
+    heading = content.h2
     problem = content.findAll(role='problem')
     if len(problem) > 1:
         print 'problem is longer than 1 for %s ' % num
-    fun_f = lambda para: para.string
-    fun_g = lambda para: type(para) == bsoup.Tag
-    paras = [fun_f(para) for para in problem[0].contents if fun_g(para)]
+    images = []
+    images = [img.get('src') for img in problem[0].findAll('img')]
+    return heading, str(problem[0]), images
 
-    return heading, paras
-
-def write_content(num, heading, paras):
+def write_content(num, heading, html, images):
     """ Write the problem description to file."""
-    pdir = 'prob%03d' % num
-    if not os.path.isdir(pdir):
-        os.mkdir(pdir)
-    lines = ['Problem %03d' % num,'']
-    lines.append(heading)
-    lines.append('=' * len(heading))
-    lines.append('')
-    for para in paras:
-        lines.extend([para, '']) 
-    with open(os.path.join(pdir, 'problem.txt'), 'wb') as txt_file:
-        for line in lines:
-            txt_file.write(line) 
+    with open(os.path.join('html', 'prob%03d.html' % num), 'wb') as txt_file:
+        txt_file.write('<h3>Problem %03d</h3>\n' % num)
+        txt_file.write('<h4>'+heading.text+'</h4>\n')
+        txt_file.write(html)
+    for img in images:
+        img_path = os.path.join('html', img)
+        if not os.path.exists(img_path):
+            print 'fetching image: %s' % img
+            data = requests.get('%s%s' % (EULER, img))
+            img_path_dir = os.path.join(*os.path.split(img_path)[:-1])
+            import pdb; pdb.set_trace()
+            if not os.path.exists(img_path_dir):
+                os.makedirs(img_path_dir)
+            with open(img_path, 'wb') as img_file:
+                img_file.write(data.content)
+
 def main():
     """ Main function"""
     num = int(sys.argv[-1])
-    heading, paras = get_content(num)
-    write_content(num, heading, paras)
+    heading, paras, images = get_html(num)
+    write_content(num, heading, paras, images)
 
 if __name__ == '__main__':
     main()
