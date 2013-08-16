@@ -34,7 +34,6 @@ def write_content(num, heading, html, images):
             print 'fetching image: %s' % img
             data = requests.get('%s%s' % (EULER, img))
             img_path_dir = os.path.join(*os.path.split(img_path)[:-1])
-            import pdb; pdb.set_trace()
             if not os.path.exists(img_path_dir):
                 os.makedirs(img_path_dir)
             with open(img_path, 'wb') as img_file:
@@ -42,9 +41,16 @@ def write_content(num, heading, html, images):
 
 def main():
     """ Main function"""
-    num = int(sys.argv[-1])
-    heading, paras, images = get_html(num)
-    write_content(num, heading, paras, images)
+    if len(sys.argv) == 3:
+        finish = int(sys.argv[-1])
+        start = int(sys.argv[-2])
+    else:
+        start = finish = sys.argv[-1]
+
+    for num in xrange(start, finish+1):
+        print 'fetching problem %s' % num
+        heading, paras, images = get_html(num)
+        write_content(num, heading, paras, images)
 
 if __name__ == '__main__':
     main()
