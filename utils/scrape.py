@@ -20,7 +20,8 @@ def get_html(num):
         print 'problem is longer than 1 for %s ' % num
     images = []
     images = [img.get('src') for img in problem[0].findAll('img')]
-    return heading, str(problem[0]), images
+    links  = [lnk.get('href') for lnk in problem[0].findAll('a')]
+    return heading, str(problem[0]), images+links
 
 def write_content(num, heading, html, images):
     """ Write the problem description to file."""
@@ -45,7 +46,7 @@ def main():
         finish = int(sys.argv[-1])
         start = int(sys.argv[-2])
     else:
-        start = finish = sys.argv[-1]
+        start = finish = int(sys.argv[-1])
 
     for num in xrange(start, finish+1):
         print 'fetching problem %s' % num
