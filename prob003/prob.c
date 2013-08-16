@@ -13,7 +13,6 @@ int main()
     long long i =  2;
     while(i < NUMBER/2){
         if(num % i == 0){
-//            printf("found that %lld is a factor\n", i);
             if(p_test(i) == 1){
                 printf("%lld is a prime factor of %lld\n", i, num);
             }
